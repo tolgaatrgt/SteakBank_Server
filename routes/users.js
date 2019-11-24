@@ -386,19 +386,19 @@ router.post('/paybill', async (req, res, next) => {
                         const query = `UPDATE Hesaplar SET Bakiye=${bakiye + data.Borç} WHERE HesapNo = '${req.body.HesapNo}'`;
 
                         await pool.request().query(query);
-                        return res.status(400).send({ success: false, msg: "ic ice try catch" });
+                        return res.status(400).send({ success: false});
                     }
                 } else {
-                    return res.status(400).send({ success: false, msg: "bakiyeyi dusemedik" });
+                    return res.status(400).send({ success: false});
                 }
 
             } else {
-                return res.status(400).send({ success: false, msg: "borc bakiyeden buyuk" });
+                return res.status(400).send({ success: false});
             }
 
         } else {
             return res.status(400).json({
-                'success': false, data: "hesabi bulamadim"
+                'success': false
             })
         }
 
@@ -411,7 +411,7 @@ router.post('/paybill', async (req, res, next) => {
 
 
 router.get("/", (req, res, next) => {
-    res.send("Baglaniyooor");
+    res.send("Baglaniyor");
 })
 
 module.exports = router
